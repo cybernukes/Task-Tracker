@@ -93,6 +93,13 @@
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            /* Ensures items stack vertically */
+            align-items: center;
+            /* Centers elements */
+            gap: 10px;
+            /* Adds spacing between items */
         }
 
         .calendar header {
@@ -199,7 +206,7 @@
         #newTaskListModal .modal-content {
             background: white;
             margin: 20% auto;
-            padding: 20px;
+            padding: 0px 20px 20px 20px;
             width: 80%;
             max-width: 400px;
             border-radius: 10px;
@@ -303,6 +310,37 @@
             background-color: #545b62;
         }
 
+        .home-button {
+            width: 100%;
+            background-color: #dbdada;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: lightgray;
+        }
+
+        .close-sidebar {
+            background-color: #ffffff;
+            color: black;
+            padding: 7px;
+            border: none;
+            font-size: larger;
+        }
+
+        .modal-content .close {
+            background-color: #ffffff;
+            color: black;
+            margin-bottom: 5px;
+            border: none;
+            font-size: larger;
+        }
+
         .close-modal {
             position: absolute;
             top: 10px;
@@ -327,6 +365,7 @@
         }
 
         .task-counter div {
+            padding: 10px;
             text-align: center;
         }
 
@@ -341,6 +380,246 @@
 
         .task-counter .uncompleted-count {
             color: #dc3545;
+        }
+
+        .task-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .task-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .task-actions .rename-task-list {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .task-actions .rename-task-list:hover {
+            background-color: #e0a800;
+        }
+
+        .task-actions .delete-task-list {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .task-actions .delete-task-list:hover {
+            background-color: #c82333;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loading-screen.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .loading-screen p {
+            color: #007bff;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .homepage {
+            display: none;
+            /* Will be toggled to flex when active */
+            flex-direction: column;
+            gap: 2rem;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .homepage.active {
+            display: flex;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .view-calendar-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .view-calendar-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .dashboard-stats {
+            font: normal;
+            /* margin-bottom: 2rem; */
+        }
+
+        .total-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card span {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .task-lists-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .task-list-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-list-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .task-list-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+        }
+
+        .task-list-stat {
+            text-align: center;
+        }
+
+        .task-list-stat .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .task-list-stat .label {
+            padding: 10px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .task-list-progress {
+            margin-top: 1rem;
+            background: #f0f0f0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #28a745;
+            transition: width 0.3s ease;
+        }
+
+        .task-list-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .task-list-actions button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .view-list-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .view-list-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hide main app content initially */
+        .navbar,
+        .task-actions,
+        .calendar-container {
+            display: none;
+        }
+
+        .navbar.active,
+        .task-actions.active,
+        .calendar-container.active {
+            display: flex;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @media (max-width: 600px) {
@@ -361,22 +640,71 @@
             .modal-buttons button {
                 margin-bottom: 10px;
             }
+
+            .total-stats {
+                gap: 1rem;
+                margin: 0px;
+            }
+
+            .task-lists-overview {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div id="loading-screen" class="loading-screen">
+        <div class="spinner"></div>
+        <p>Loading Task Tracker Pro...</p>
+        <c style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Made by Aniruddha Manmode</c>
+    </div>
+
+    <div id="homepage" class="homepage">
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+
+        </div>
+
+        <div class="dashboard-stats">
+            <div class="total-stats">
+                <div class="stat-card">
+                    <h3>Total Tasks</h3>
+                    <span id="totalTaskLists">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Task Done</h3>
+                    <span id="totalTasks">0</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="view-calendar-btn" onclick="switchToCalendarView()">View Calendar</button>
+
+        <div class="task-lists-overview" id="taskListsOverview">
+            <!-- Task list cards will be generated here -->
+        </div>
+    </div>
+
     <nav class="navbar">
         <button class="hamburger" onclick="toggleMenu()">☰</button>
         <h1 class="title" id="currentListTitle">Task Tracker</h1>
         <button class="add-task-list" onclick="openNewTaskListModal()">+ New Task</button>
     </nav>
 
+    <div class="task-actions">
+        <button class="rename-task-list" onclick="renameTaskList()">Rename Task List</button>
+        <button class="delete-task-list" onclick="deleteTaskList()">Delete Task List</button>
+    </div>
+
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h2>Your Task Lists</h2>
             <button class="close-sidebar" onclick="toggleMenu()">&times;</button>
         </div>
+        <button class="home-button" onclick="goHome()">
+            Dashboard
+        </button>
         <div class="task-lists" id="taskLists"></div>
     </div>
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
@@ -425,9 +753,10 @@
 
     <div id="newTaskListModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeNewTaskListModal()">&times;</span>
+            <br>
             <h3>New Task List</h3>
             <input type="text" id="taskListName" placeholder="Enter list name">
+            <button class="btn-completed" onclick="closeNewTaskListModal()" style="background-color: red;">Close</button> 
             <button class="btn-completed" onclick="createTaskList()">Create</button>
         </div>
     </div>
@@ -437,6 +766,7 @@
         let currentTaskListId = null;
         let currentDate = new Date();
         let tasks = JSON.parse(localStorage.getItem('calendarTasks')) || {};
+        let isCalendarView = false;
 
 
         // Initialize default list if empty
@@ -493,6 +823,11 @@
         function closeNewTaskListModal() {
             document.getElementById('newTaskListModal').style.display = 'none';
         }
+
+        function goHome() {
+            window.location.href = "index.html"; // Change to your actual home page URL
+        }
+
 
         function createTaskList() {
             const name = document.getElementById('taskListName').value;
@@ -621,6 +956,170 @@
             }
         }
 
+        function renameTaskList() {
+            const newName = prompt("Enter the new name for the task list:");
+            if (newName && newName.trim()) {
+                const currentTaskList = taskLists.find(list => list.id === currentTaskListId);
+                currentTaskList.name = newName.trim();
+                localStorage.setItem('taskLists', JSON.stringify(taskLists));
+                renderTaskLists();
+            }
+        }
+
+        function deleteTaskList() {
+            if (taskLists.length === 1) {
+                alert("You cannot delete the last task list.");
+                return;
+            }
+
+            if (confirm("Are you sure you want to delete this task list?")) {
+                taskLists = taskLists.filter(list => list.id !== currentTaskListId);
+                localStorage.setItem('taskLists', JSON.stringify(taskLists));
+                currentTaskListId = taskLists[0].id; // Switch to the first task list
+                renderTaskLists();
+                renderCalendar();
+            }
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.getElementById('loading-screen').classList.add('hide');
+                // Remove the loading screen from DOM after transition
+                setTimeout(function () {
+                    document.getElementById('loading-screen').remove();
+                }, 500);
+            }, 1500); // Show loading screen for 1.5 seconds
+        });
+
+        function getTaskListStats(tasks) {
+            const completed = Object.values(tasks).filter(status => status === 'completed').length;
+            const uncompleted = Object.values(tasks).filter(status => status === 'uncompleted').length;
+            const total = completed + uncompleted;
+            const completionRate = total === 0 ? 0 : (completed / total) * 100;
+
+            return {
+                completed,
+                uncompleted,
+                total,
+                completionRate
+            };
+        }
+
+        // Function to render the homepage
+        function renderHomepage() {
+            const totalTaskLists = taskLists.length;
+            let totalTasks = 0;
+
+            document.getElementById('totalTaskLists').textContent = totalTaskLists;
+
+            const overviewContainer = document.getElementById('taskListsOverview');
+            overviewContainer.innerHTML = '';
+
+            taskLists.forEach(list => {
+                const stats = getTaskListStats(list.tasks);
+                totalTasks += stats.total;
+
+                const card = document.createElement('div');
+                card.className = 'task-list-card';
+                card.innerHTML = `
+            <h3>${list.name}</h3>
+            <div class="task-list-stats">
+                <div class="task-list-stat">
+                    <span class="value">${stats.completed}</span>
+                    <span class="label">Completed</span>
+                </div>
+                <div class="task-list-stat">
+                    <span class="value">${stats.uncompleted}</span>
+                    <span class="label">Pending</span>
+                </div>
+                <div class="task-list-stat">
+                    <span class="value">${stats.completionRate.toFixed(1)}%</span>
+                    <span class="label">Completion</span>
+                </div>
+            </div>
+            <div class="task-list-progress">
+                <div class="progress-bar" style="width: ${stats.completionRate}%"></div>
+            </div>
+            <div class="task-list-actions">
+                <button class="view-list-btn" onclick="viewTaskList('${list.id}')">View List</button>
+            </div>
+        `;
+
+                overviewContainer.appendChild(card);
+            });
+
+            document.getElementById('totalTasks').textContent = totalTasks;
+        }
+
+        // Function to switch between homepage and calendar view
+        function switchView(toCalendar) {
+            isCalendarView = toCalendar;
+            const homepage = document.getElementById('homepage');
+            const appElements = document.querySelectorAll('.navbar, .task-actions, .calendar-container');
+
+            if (toCalendar) {
+                homepage.classList.remove('active');
+                appElements.forEach(el => el.classList.add('active'));
+            } else {
+                homepage.classList.add('active');
+                appElements.forEach(el => el.classList.remove('active'));
+                renderHomepage();
+            }
+        }
+
+        function switchToCalendarView() {
+            switchView(true);
+        }
+
+        function viewTaskList(listId) {
+            currentTaskListId = listId;
+            switchView(true);
+            renderCalendar();
+            renderTaskLists();
+        }
+
+        // Modify the window load event listener
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('hide');
+                    setTimeout(function () {
+                        if (loadingScreen) {
+                            loadingScreen.remove();
+                        }
+                        // Show homepage by default
+                        switchView(false);
+                    }, 500);
+                }
+            }, 1500);
+        });
+
+
+        // Update existing functions to refresh homepage when needed
+        const originalMarkTaskStatus = markTaskStatus;
+        markTaskStatus = function (isCompleted) {
+            originalMarkTaskStatus(isCompleted);
+            if (!isCalendarView) {
+                renderHomepage();
+            }
+        };
+
+        const originalCreateTaskList = createTaskList;
+        createTaskList = function () {
+            originalCreateTaskList();
+            if (!isCalendarView) {
+                renderHomepage();
+            }
+        };
+
+        const originalDeleteTaskList = deleteTaskList;
+        deleteTaskList = function () {
+            originalDeleteTaskList();
+            if (!isCalendarView) {
+                renderHomepage();
+            }
+        };
 
         // Initial render
         renderTaskLists();
